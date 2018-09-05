@@ -1,0 +1,17 @@
+<h1>All patients</h1>
+<div class="ui middle aligned divided list">
+  <% @patients.each do |patient| %>
+    <div class="item">
+      <div class="content">
+        <%= link_to patient.name, patient_path(patient), class: "header"%>
+        <div class="description"><%= patient.email %></div>
+        <div class="description"><%= patient.address %></div>
+        <div class="">
+          <%= link_to "Edit", edit_patient_path(patient) %> | 
+          <%= link_to "Delete", patient, method: :delete,
+                                         data: {confirm: "You sure?"} %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
