@@ -1,3 +1,18 @@
 // Place all the styles related to the Doctors controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.centered{
+  width: 50%;
+  margin: auto;
+  .button-group {
+    padding-top: 20px;
+    .button-centered {
+      width: 100%;
+    }
+  }
+}
+
+.doctor-details {
+  padding-top: 10vh;
+}

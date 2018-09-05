@@ -1,13 +1,4 @@
-<h1>Add a doctor</h1>
-
-<div class="">
-  <%= form_for(@doctor) do |f| %>
-    <%= f.label :name%>
-    <%= f.text_field :name %>
-    
-    <%= f.label :email%>
-    <%= f.text_field :email %>
-    
-    <%= f.submit "Submit" %>
-  <% end %>
+<div class="container centered">
+  <h1>Add a doctor</h1>
+  <%= render "form" %>
 </div>
