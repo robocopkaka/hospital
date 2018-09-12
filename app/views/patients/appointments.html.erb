@@ -1,0 +1,17 @@
+<div class="ui middle aligned divided list">
+  <h1><%= @patient.name %>'s appointments</h1>
+  <% @appointments.each do |appointment| %>
+    <div class="item">
+      <div class="content">
+        <span class="header"><%= appointment.doctor.name %></span>
+        <div class="description"><%= appointment.doctor.email %></div>
+        <div class="description"><%= appointment.appointment_date.strftime("%Y-%m-%d") %></div>
+        <div class="">
+          <%= link_to "Edit", edit_appointment_path(appointment) %> | 
+          <%= link_to "Delete", appointment, method: :delete, 
+                                             data: { confirm: "You sure?" } %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

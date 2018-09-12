@@ -1,0 +1,30 @@
+<div class="appointment">
+  <div class="ui container raised segment">
+    <%= form_for @appointment, html: {class: "ui form"} do |f| %>
+      <div class="input-field">
+        <div class="field">
+          <%= f.label :appointment_date%>
+          <%= f.date_field :appointment_date %>
+        </div>
+      </div>
+      
+      <div class="input-field">
+        <div class="field">
+          <%= f.label :doctor %>
+          <%= collection_select(:appointment, :doctor_id, Doctor.all, :id, :name, {}, { class: "ui dropdown" }) %>
+        </div>
+      </div>
+      
+      <div class="input-field">
+        <div class="field">
+          <%= f.label :patient%>
+          <%= collection_select(:appointment, :patient_id, Patient.all, :id, :name, {}, { class: "ui dropdown" }) %>
+        </div>
+      </div>
+      
+      <div class="button-group">
+        <%= f.submit "Submit", class: "ui button button-centered" %>
+      </div>
+    <% end %>
+  </div>
+</div>
