@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  before_action :find_patient, only: %i[show edit update destroy]
+  before_action :find_patient, only: %i[show edit update destroy appointments]
   def new
     @patient = Patient.new
   end
@@ -32,6 +32,10 @@ class PatientsController < ApplicationController
   def destroy
     @patient.destroy
     redirect_to root_url
+  end
+
+  def appointments
+    @appointments = @patient.appointments
   end
 
   private
