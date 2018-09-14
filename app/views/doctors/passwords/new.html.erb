@@ -1,0 +1,19 @@
+<div class="container centered">
+  <h2>Forgot your password?</h2>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "ui form" }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Send me reset password instructions", class: "ui button button-centered" %>
+    </div>
+  <% end %>
+  
+  <div class="shared-links">
+    <%= render "doctors/shared/links" %>
+  </div>
+</div>

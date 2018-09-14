@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :doctors
+  devise_for :patients
   get 'patients/new'
   get 'patients/edit'
   get 'patients/show'
