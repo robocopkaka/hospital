@@ -1,0 +1,21 @@
+<div class="ui secondary pointing menu">
+  <%= link_to "Home", root_url, class: "item active" %>
+  <%= link_to "Patients", patients_url, class: "item" %>
+  <%= link_to "Doctors", doctors_url, class: "item" %>
+  <div class="right menu">
+    <% if !signed_in? %>
+    <div class="ui dropdown item">
+      Login
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <%= link_to "Login as a patient", patient_session_url, class: "item" %>
+        <%= link_to "Login as a doctor", doctor_session_url, class: "item" %>
+      </div>
+    </div>
+    <% else %>
+    <% end %>
+    <!-- <a class="ui item">
+      Login
+    </a> -->
+  </div>
+</div>
