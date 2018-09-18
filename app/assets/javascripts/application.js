@@ -16,3 +16,23 @@
 //= require jquery
 //= require semantic-ui
 //= require_tree .
+$(document).on('turbolinks:load', function() {
+  routes = {
+    '/': '#home',
+    '/patients': '#patients',
+    '/doctors': '#doctors'
+  };
+  Object.keys(routes).forEach(function(key) {
+    if (key.length > 1) {
+      arr = Array.from(key)
+      arr.splice(0,1)
+      arr = arr.join("").toString()
+      if (window.location.pathname.includes(arr)) {
+        $(routes[key]).addClass('active');
+        $(routes['/']).removeClass('active');
+      }
+    } else if (key.length === 1) {
+      $(routes[key]).addClass('active');
+    }
+  });
+});
