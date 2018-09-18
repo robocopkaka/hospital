@@ -1,0 +1,24 @@
+<div class="ui purple inverted secondary pointing menu" id="main-navbar">
+  <%= link_to "Home", root_url, class: "item", id: "home" %>
+  <%= link_to "Patients", patients_url, class: "item", id: "patients" %>
+  <%= link_to "Doctors", doctors_url, class: "item", id: "doctors" %>
+  <div class="right menu">
+    <% if !signed_in? %>
+    <div class="ui dropdown item">
+      Login
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <%= link_to "Patient Login", patient_session_url, class: "item" %>
+        <%= link_to "Doctor Login", doctor_session_url, class: "item" %>
+      </div>
+    </div>
+    <% elsif doctor_signed_in? %>
+      <%= link_to "Logout", destroy_doctor_session_url, class: "item" %>
+    <% elsif patient_signed_in? %>
+      <%= link_to "Logout", destroy_patient_session_url, class: "item" %>
+    <% end %>
+  </div>
+</div>
+<script>
+  $('.ui.dropdown').dropdown();
+</script>
