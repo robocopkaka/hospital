@@ -1,0 +1,29 @@
+<div class="column" id="card-column">
+  <div class="ui raised green card">
+    <div class="content">
+      <div class="header">
+        <%= link_to patient.name, patient_path(patient), class: "header"%>
+        <div class="right floated vertical-ellipsis" data-id="<%= patient.id %>">
+          <div class="ui dropdown icon button" id="toggle-btn">
+            <%= semantic_icon("ellipsis vertical icon", id: "vertical-icon") %>
+          </div>
+        </div>
+      </div>
+      <div class="stuff">
+        <div class="image">
+          <%= image_tag("android-chrome-512x512.png", class: "ui avatar image") %>
+        </div>
+        <div class="right floated resource-action-buttons hidden" id="icon-group-<%= patient.id %>">
+          <%= link_to semantic_icon("edit icon"), edit_patient_path(patient), id: "edit-resource"%>
+          <%= link_to semantic_icon("trash icon"), patient, method: :delete,
+                                         data: {confirm: "You sure?"},
+                                         id: "delete-resource" %> 
+        </div>
+      </div>
+    </div>
+    <div class="extra-content">
+      <span class="left"><%= patient.email %></span>
+      <span class="right floated"><%= patient.address %></span>
+    </div>
+  </div>
+</div>

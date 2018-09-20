@@ -1,19 +1,9 @@
-<h1>All doctors</h1>
-<div class="ui middle aligned divided list">
-  <% @doctors.each do |doctor| %>
-    <div class="item">
-      <div class="content">
-        <%= link_to doctor.name, doctor_path(doctor), class: "header"  %>
-        <div class="description"><%= doctor.email %></div>
-        <div class="">
-          <%= link_to "Edit", edit_doctor_path(doctor) %> | 
-          <%= link_to "Delete", doctor, 
-                      method: :delete,
-                      data: { confirm: "You sure?" }%>
-        </div>
-      </div>
-    </div>
-  <% end %>
+<div class="resources-page">
+  <h1 class="resources-header">All Doctors</h1>
+  <div class="ui two column doubling stackable grid container all-resources">
+    <%= render @doctors %>
+  </div>
 </div>
+
 
   
