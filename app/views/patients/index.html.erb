@@ -1,17 +1,36 @@
-<h1>All patients</h1>
-<div class="ui middle aligned divided list">
-  <% @patients.each do |patient| %>
-    <div class="item">
-      <div class="content">
-        <%= link_to patient.name, patient_path(patient), class: "header"%>
-        <div class="description"><%= patient.email %></div>
-        <div class="description"><%= patient.address %></div>
-        <div class="">
-          <%= link_to "Edit", edit_patient_path(patient) %> | 
-          <%= link_to "Delete", patient, method: :delete,
-                                         data: {confirm: "You sure?"} %>
+<div id="patients-page">
+  <h1 id="patients-header">All patients</h1>
+  <div class="ui two column doubling stackable grid container" id="all-patients">
+    <% @patients.each do |patient|%>
+      <div class="column" id="card-column">
+        <div class="ui raised green card">
+          <div class="content">
+            <div class="header">
+              <%= link_to patient.name, patient_path(patient), class: "header"%>
+              <div class="right floated vertical-ellipsis" data-id="<%= patient.id %>">
+                <div class="ui dropdown icon button" id="toggle-btn">
+                  <%= semantic_icon("ellipsis vertical icon", id: "vertical-icon") %>
+                </div>
+              </div>
+            </div>
+            <div class="stuff">
+              <div class="image">
+                <%= image_tag("android-chrome-512x512.png", class: "ui avatar image") %>
+              </div>
+              <div class="right floated patient-action-buttons hidden" id="icon-group-<%= patient.id %>">
+                <%= link_to semantic_icon("edit icon"), edit_patient_path(patient), id: "edit-patient"%>
+                <%= link_to semantic_icon("trash icon"), patient, method: :delete,
+                                               data: {confirm: "You sure?"},
+                                               id: "delete-patient" %> 
+              </div>
+            </div>
+          </div>
+          <div class="extra-content">
+            <span class="left"><%= patient.email %></span>
+            <span class="right floated"><%= patient.address %></span>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

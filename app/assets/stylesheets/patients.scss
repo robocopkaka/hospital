@@ -20,3 +20,71 @@
 .doctor-details {
   padding-top: 10vh;
 }
+
+#patients-page {
+  #patients-header {
+    text-align: center;
+  }
+  #all-patients {
+    .hidden {
+      display: none;
+    }
+    padding-left: 200px;
+    #card-column {
+      margin-right: -100px;
+      .card {
+        height: 150px;
+        width: 350px;
+        border-top: green;
+        .extra-content {
+          padding: 20px 20px;
+          font-size: 15px;
+          color: grey;
+        }
+        .content {
+          .image {
+            margin-top: 5px;
+            font-size: 25px;
+            margin-bottom: -20px;
+          }
+          .patient-action-buttons {
+            margin-top: -15px;
+            #edit-patient {
+              color: black;
+            }
+            #delete-patient {
+              color: black;
+            }
+          }
+          .header {
+            a {
+              color: black;
+            }
+            .vertical-ellipsis {
+              color: #b2beb5;
+              .button {
+                background-color: #FFF;
+              }
+              #toggle-btn {
+                margin-top: -6px;
+              }
+              #vertical-icon {
+                color: black;
+                &:hover {
+                  cursor: pointer;
+                  color: black;
+                }
+                &:visited {
+                  color: black;
+                }
+              }
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+  }  
+}
