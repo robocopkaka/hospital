@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   get 'patients/edit'
   get 'patients/show'
   get 'patients/index'
-  get 'doctors/new'
-  get 'doctors/edit'
-  get 'doctors/show'
+  # get 'doctors/new'
+  # get 'doctors/edit'
+  # get 'doctors/show'
 
   resources :appointments
   resources :patients do

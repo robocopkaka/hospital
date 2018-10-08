@@ -1,21 +1,24 @@
 class DoctorsController < ApplicationController
   before_action :find_doctor, only: %i[edit update show destroy appointments]
-  def new
-    @doctor = Doctor.new
-  end
-
-  def create
-    @doctor = Doctor.new(doctor_params)
-    if @doctor.save
-      redirect_to root_url
-    end
-  end
+  # def new
+  #   @doctor = Doctor.new
+  # end
+  # 
+  # def create
+  #   binding.pry
+  #   @doctor = Doctor.new(doctor_params)
+  #   if @doctor.save
+  #     redirect_to root_url
+  #   end
+  # end
 
   def edit; end
 
   def update
     if @doctor.update_attributes(doctor_params)
       redirect_to root_url
+    else
+      render 'edit'
     end
   end
 
