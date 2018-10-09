@@ -1,17 +1,17 @@
 class PatientsController < ApplicationController
   before_action :find_patient, only: %i[show edit update destroy appointments]
-  def new
-    @patient = Patient.new
-  end
-
-  def create
-    @patient = Patient.new(patient_params)
-    if @patient.save
-      redirect_to patient_url(@patient)
-    else
-      render 'new'
-    end
-  end
+  # def new
+  #   @patient = Patient.new
+  # end
+  # 
+  # def create
+  #   @patient = Patient.new(patient_params)
+  #   if @patient.save
+  #     redirect_to patient_url(@patient)
+  #   else
+  #     render 'new'
+  #   end
+  # end
 
   def edit; end
 
