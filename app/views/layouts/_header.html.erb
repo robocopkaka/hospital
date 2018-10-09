@@ -1,7 +1,6 @@
 <div class="ui green inverted secondary pointing menu" id="main-navbar">
   <%= link_to "Home", root_url, class: "item", id: "home" %>
-  <%= link_to "Patients", patients_url, class: "item", id: "patients" %>
-  <%= link_to "Doctors", doctors_url, class: "item", id: "doctors" %>
+  <%= patient_or_doctor %>
   <div class="right menu">
     <% if !signed_in? %>
     <div class="ui dropdown item">

@@ -27,3 +27,4 @@
 
 .DS_STORE
 coverage
+spec/examples.txt
