@@ -30,6 +30,12 @@ RSpec.describe DoctorsController, type: :request do
       expect(response).to redirect_to :root
       follow_redirect!
     end
+
+    it 'renders the edit template if the update is unsuccessful' do
+      params[:doctor][:email] = 'kachi'
+      put doctor_path(doctor.id), params: params
+      expect(response).to render_template :edit
+    end
   end
 
   describe 'get #show' do
@@ -48,6 +54,14 @@ RSpec.describe DoctorsController, type: :request do
       expect(response).to render_template :appointments
       expect(response.body).to include patient.name
       expect(response.body).to include patient.email
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'should delete a doctor from the database' do
+      expect do
+        delete doctor_path(doctor.id)
+      end.to change(Doctor, :count).by(-1)
     end
   end
 end

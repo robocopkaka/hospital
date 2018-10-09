@@ -65,8 +65,7 @@ RSpec.describe AppointmentsController, type: :request do
     it 'should remove the appointment from the database' do
       expect {
         delete appointment_path(appointment.id)
-      # appointment.should_not exist_in_database
-    }.to change(Appointment, :count).by(-1)
+      }.to change(Appointment, :count).by(-1)
     end
   end
 end

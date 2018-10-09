@@ -25,10 +25,16 @@ RSpec.describe PatientsController, type: :request do
         email: 'echo@echo.com'
       } }
     end
-    it 'redirects to the home page after creating a new patient' do
+    it 'redirects to the home page after updating a new patient' do
       put patient_path(patient.id), params: params
       expect(response).to redirect_to patient_url(patient)
       follow_redirect!
+    end
+    it 'renders the edit page if the update is unsuccessful' do
+      # binding.pry
+      params[:patient][:email] = 'kachi'
+      put patient_path(patient.id), params: params
+      expect(response).to render_template :edit
     end
   end
 
@@ -48,6 +54,14 @@ RSpec.describe PatientsController, type: :request do
       expect(response).to render_template :appointments
       expect(response.body).to include doctor.name
       expect(response.body).to include doctor.email
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'should delete a patient from the database' do
+      expect do
+        delete patient_path(patient.id)
+      end.to change(Patient, :count).by(-1)
     end
   end
 end
