@@ -22,6 +22,7 @@ $(document).on('turbolinks:load', function() {
     '/': '#home',
     '/patients': '#patients',
     '/doctors': '#doctors',
+    '/appointments': '#appointments',
     '/specializations': '#specializations'
   };
   Object.keys(routes).forEach(function(key) {

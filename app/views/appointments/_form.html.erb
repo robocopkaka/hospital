@@ -10,8 +10,8 @@
       
       <div class="input-field">
         <div class="field">
-          <%= f.label :doctor %>
-          <%= collection_select(:appointment, :doctor_id, Doctor.all, :id, :name, {}, { class: "ui dropdown" }) %>
+          <%= f.label :specialization %>
+          <%= collection_select(:appointment, :doctor_id, get_specializations, :to_s, {}, { class: "ui dropdown" }) %>
         </div>
       </div>
       
