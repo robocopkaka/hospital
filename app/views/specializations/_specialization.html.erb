@@ -1,0 +1,11 @@
+<div class="column">
+  <div class="specialization-item">
+    <div id="specialization-name"><%= specialization.name %></div>
+    <div id="specialization-links" class="ui right floated">
+      <%= link_to semantic_icon("edit icon"), edit_specialization_path(specialization), id: "edit-resource"%>
+      <%= link_to semantic_icon("trash icon"), specialization, method: :delete,
+                                     data: {confirm: "You sure?"},
+                                     id: "delete-resource" %> 
+    </div>
+  </div>
+</div>

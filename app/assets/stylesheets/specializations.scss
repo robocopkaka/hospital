@@ -1,0 +1,66 @@
+// Place all the styles related to the Specializations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.specialization {
+  
+  #specialization-form {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 25vh;
+    width: 500px;
+    height: 330px;
+    margin: auto;
+    
+    #specialization-header {
+      text-align: center;
+      padding-left: 180px;
+    }
+  }
+  
+  .button-group {
+    width: 100%;
+    padding-top: 20px;
+    // margin: auto;
+  }
+}
+
+.specializations-list {
+  margin-left: 180px;
+  #specializations-list-header {
+    text-align: center;
+  }
+  .column {
+    margin-right: -100px;
+  }
+  .specialization-item {
+    max-width: 1000px;
+    width: 400px;
+    height: 100px;
+    margin: 20px 0 20px 80px;
+    padding: 20px 0 20px 0px;
+    z-index: 2;
+    -moz-box-shadow:    1px 1px 1px 1px #ccc;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow:         1px 1px 1px 1px #ccc;
+    
+    #specialization-name {
+      display: flex;
+      justify-content: flex-start;
+      font-size: 25px;
+      padding: 0 0 0 20px;
+    }
+    #specialization-links {
+      #edit-resource{
+        color: #22BA46;
+      }
+      #delete-resource {
+        color: #DB2728;
+      }
+      padding-right: 10px;
+      margin-top: -20px;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

@@ -11,6 +11,17 @@ RSpec.describe 'layouts/_header.html.erb', type: :view do
         render template: 'layouts/_header.html.erb'
 
         expect(rendered).to match 'doctors'
+        expect(rendered).to_not match 'Specializations'
+      end
+    end
+  end
+
+  describe 'admins logged in' do
+    login_admin
+    context 'when the doctor is an admin' do
+      it 'renders admin-only links' do
+        render template: 'layouts/_header.html.erb'
+        expect(rendered).to match 'Specializations'
       end
     end
   end
