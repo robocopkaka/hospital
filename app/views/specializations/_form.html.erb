@@ -1,0 +1,15 @@
+<div class="ui container raised segment">
+  <%= form_for @specialization, html: {class: "ui form"} do |f| %>
+  
+   <div class="input-field">
+     <div class="field">
+       <%= f.label :name %>
+       <%= f.text_field :name %>
+     </div>
+   </div>
+    
+    <div class="button-group">
+      <%= f.submit "Submit", class: "ui button button-centered" %>
+    </div>
+  <% end %>
+</div>

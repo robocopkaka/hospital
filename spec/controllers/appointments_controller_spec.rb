@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AppointmentsController, type: :request do
-  let!(:doctor) { create :doctor }
+  let!(:doctor) { create :doctor_with_specialization }
   let!(:patient) { create :patient }
   let!(:params) do
     { appointment: {

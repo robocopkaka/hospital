@@ -2,7 +2,16 @@ module ControllerMacros
   def login_doctor
     before(:each) do
       @request.env['devise.mapping'] = Devise.mappings[:doctor]
-      sign_in FactoryBot.create(:doctor) # Using factory bot as an example
+      sign_in FactoryBot.create(:doctor_with_specialization)
+    end
+  end
+
+  def login_admin
+    before(:each) do
+      @request.env['devise.mapping'] = Devise.mappings[:doctor]
+      specialization = FactoryBot.create(:specialization_with_doctor)
+      specialization.doctors.first.update_attributes(admin: true)
+      sign_in specialization.doctors.first
     end
   end
 

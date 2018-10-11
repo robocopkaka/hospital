@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_13_171204) do
+ActiveRecord::Schema.define(version: 2018_10_10_154910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 2018_09_13_171204) do
     t.bigint "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "patient_notes", default: "", null: false
+    t.text "doctor_notes", default: "", null: false
+    t.boolean "confirmed", default: false, null: false
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
   end
@@ -34,8 +37,12 @@ ActiveRecord::Schema.define(version: 2018_09_13_171204) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.boolean "admin", default: false
+    t.string "specialization", default: ""
+    t.bigint "specialization_id"
     t.index ["email"], name: "index_doctors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
+    t.index ["specialization_id"], name: "index_doctors_on_specialization_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -52,6 +59,13 @@ ActiveRecord::Schema.define(version: 2018_09_13_171204) do
     t.index ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
   end
 
+  create_table "specializations", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "patients"
+  add_foreign_key "doctors", "specializations"
 end

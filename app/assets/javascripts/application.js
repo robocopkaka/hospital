@@ -21,7 +21,8 @@ $(document).on('turbolinks:load', function() {
   routes = {
     '/': '#home',
     '/patients': '#patients',
-    '/doctors': '#doctors'
+    '/doctors': '#doctors',
+    '/specializations': '#specializations'
   };
   Object.keys(routes).forEach(function(key) {
     if (key.length > 1) {

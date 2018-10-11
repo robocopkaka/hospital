@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # get 'doctors/edit'
   # get 'doctors/show'
 
-  resources :appointments
+  resources :appointments, :specializations
   resources :patients do
     get 'appointments', on: :member
   end
