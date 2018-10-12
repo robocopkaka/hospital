@@ -4,6 +4,10 @@ FactoryBot.define do
     email { "#{Faker::Name.first_name}@hospital.com" }
     password { 'password' }
 
+    trait :admin do
+      admin { true }
+    end
+
     factory :doctor_with_specialization do
       before(:create) do |doctor|
         doctor.specialization_id = create(:specialization).id

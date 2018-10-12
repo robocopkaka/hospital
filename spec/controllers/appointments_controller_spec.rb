@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AppointmentsController, type: :request do
-  let!(:doctor) { create :doctor_with_specialization }
+  let!(:doctor) { create :doctor_with_specialization, :admin }
   let!(:patient) { create :patient }
   let!(:params) do
     { appointment: {
@@ -60,7 +60,7 @@ RSpec.describe AppointmentsController, type: :request do
 
   describe 'DELETE #destroy' do
     let!(:appointment) do
-      create :appointment, doctor_id: doctor.id, patient_id: patient.id
+      create :appointment
     end
     it 'should remove the appointment from the database' do
       expect {

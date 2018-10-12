@@ -1,5 +1,5 @@
 module AppointmentsHelper
-  def get_specializations
-    Doctor.all.pluck(:specialization)
+  def retrieve_specializations
+    Specialization.all.order(name: :asc)
   end
 end

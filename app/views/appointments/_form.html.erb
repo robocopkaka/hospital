@@ -11,14 +11,7 @@
       <div class="input-field">
         <div class="field">
           <%= f.label :specialization %>
-          <%= collection_select(:appointment, :doctor_id, get_specializations, :to_s, {}, { class: "ui dropdown" }) %>
-        </div>
-      </div>
-      
-      <div class="input-field">
-        <div class="field">
-          <%= f.label :patient%>
-          <%= collection_select(:appointment, :patient_id, Patient.all, :id, :name, {}, { class: "ui dropdown" }) %>
+          <%= f.collection_select(:specialization_id, retrieve_specializations, :id, :name, {}, { class: "ui dropdown" }) %>
         </div>
       </div>
       

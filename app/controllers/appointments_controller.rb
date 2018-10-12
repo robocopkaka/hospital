@@ -1,12 +1,15 @@
 class AppointmentsController < ApplicationController
   before_action :find_appointment, only: %i[edit update destroy]
+  attr_accessor :specialization_id
   def new
     @appointment = Appointment.new
   end
 
   def create
-    @appointment = Appointment.new(appointment_params)
+    @appointment = current_patient.appointments.build(appointment_params)
     if @appointment.save
+      AppointmentMailer.with(appointment: @appointment)
+                       .new_appointment.deliver_later
       redirect_to root_url
     else
       render 'new'
@@ -39,7 +42,6 @@ class AppointmentsController < ApplicationController
 
   def appointment_params
     params.require(:appointment).permit(:appointment_date,
-                                        :patient_id,
-                                        :doctor_id)
+                                        :specialization_id)
   end
 end

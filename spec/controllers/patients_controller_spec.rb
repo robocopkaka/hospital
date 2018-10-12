@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PatientsController, type: :request do
-  let!(:doctor) { create :doctor_with_specialization }
+  let!(:doctor) { create :doctor_with_specialization, :admin }
   let!(:patient) { create :patient }
 
   describe 'GET #edit' do
@@ -26,12 +26,13 @@ RSpec.describe PatientsController, type: :request do
       } }
     end
     it 'redirects to the home page after updating a new patient' do
+      sign_in patient
       put patient_path(patient.id), params: params
       expect(response).to redirect_to patient_url(patient)
       follow_redirect!
     end
     it 'renders the edit page if the update is unsuccessful' do
-      # binding.pry
+      sign_in patient
       params[:patient][:email] = 'kachi'
       put patient_path(patient.id), params: params
       expect(response).to render_template :edit
@@ -47,7 +48,7 @@ RSpec.describe PatientsController, type: :request do
 
   describe 'get #appointments' do
     let!(:appointment) do
-      create :appointment, doctor_id: doctor.id, patient_id: patient.id
+      create :appointment
     end
     it 'shows a patient\'s appointments' do
       get appointments_patient_path(patient.id)
