@@ -48,7 +48,7 @@ RSpec.describe PatientsController, type: :request do
 
   describe 'get #appointments' do
     let!(:appointment) do
-      create :appointment
+      create :appointment, doctor_id: doctor.id, patient_id: patient.id
     end
     it 'shows a patient\'s appointments' do
       get appointments_patient_path(patient.id)

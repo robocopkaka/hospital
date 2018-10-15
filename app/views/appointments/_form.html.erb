@@ -1,6 +1,13 @@
-<div class="appointment">
+<div class="">
   <div class="ui container raised segment">
     <%= form_for @appointment, html: {class: "ui form"} do |f| %>
+    <% if @appointment && @appointment.errors.any? %>
+      <ul>
+      <% @appointment.errors.full_messages.each do |error_message| %>
+        <li><%= error_message %></li>
+      <% end %>
+      </ul>
+    <% end %>
       <div class="input-field">
         <div class="field">
           <%= f.label :appointment_date%>

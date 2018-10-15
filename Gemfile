@@ -47,10 +47,11 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
   gem 'factory_bot_rails'
-  gem 'selenium-webdriver'
+  gem 'guard-rspec', require: false
   gem 'pry-rails'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
 end
 
 group :test do

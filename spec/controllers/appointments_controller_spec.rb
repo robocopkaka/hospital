@@ -3,17 +3,20 @@ require 'rails_helper'
 RSpec.describe AppointmentsController, type: :request do
   let!(:doctor) { create :doctor_with_specialization, :admin }
   let!(:patient) { create :patient }
+  let!(:specialization) { create :specialization }
   let!(:params) do
     { appointment: {
       appointment_date: Time.now,
       doctor_id: doctor.id,
-      patient_id: patient.id
+      patient_id: patient.id,
+      specialization_id: specialization.id
     } }
   end
   let!(:faulty_params) do
     { appointment: {
       doctor_id: 'a',
-      patient_id: patient.id
+      patient_id: 'a',
+      specialization_id: 'a'
     } }
   end
   describe 'GET #new' do
@@ -25,11 +28,13 @@ RSpec.describe AppointmentsController, type: :request do
 
   describe 'POST #create' do
     it 'should redirect to the home page if an appointment is saved successfully' do
+      sign_in patient
       post appointments_path, params: params
       expect(response).to redirect_to :root
       follow_redirect!
     end
     it 'should render the new template if the appointment isn\'t saved' do
+      sign_in patient
       post appointments_path, params: faulty_params
       expect(response).to render_template :new
     end
@@ -41,17 +46,20 @@ RSpec.describe AppointmentsController, type: :request do
     end
     describe 'GET #edit' do
       it 'should render the edit template' do
+        sign_in patient
         get edit_appointment_path(appointment.id)
         expect(response).to render_template :edit
       end
     end
     describe 'PUT #update' do
       it 'should redirect to the home page if update is successful' do
+        sign_in patient
         put appointment_path(appointment.id), params: params
         expect(response).to redirect_to :root
         follow_redirect!
       end
       it 'should render the edit template if the edit isn\'t successful' do
+        sign_in patient
         put appointment_path(appointment.id), params: faulty_params
         expect(response).to render_template :edit
       end
@@ -63,9 +71,9 @@ RSpec.describe AppointmentsController, type: :request do
       create :appointment
     end
     it 'should remove the appointment from the database' do
-      expect {
+      expect do
         delete appointment_path(appointment.id)
-      }.to change(Appointment, :count).by(-1)
+      end.to change(Appointment, :count).by(-1)
     end
   end
 end
