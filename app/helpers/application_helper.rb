@@ -11,9 +11,11 @@ module ApplicationHelper
       # render stuff
       build_doctor_links(current_doctor)
     elsif !current_patient.nil?
-      # render some other stuff
-      content_tag(:a, 'Patients',
-                  href: patients_url, class: 'item', id: 'patients')
+      content = content_tag(:a, 'Patients',
+                            href: patients_url, class: 'item', id: 'patients')
+      content << content_tag(:a, 'Make an appointment',
+                             href: new_appointment_path,
+                             class: 'item', id: 'appointments')
     end
   end
 

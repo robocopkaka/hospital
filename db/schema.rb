@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_10_154910) do
+ActiveRecord::Schema.define(version: 2018_10_12_102705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,10 @@ ActiveRecord::Schema.define(version: 2018_10_10_154910) do
     t.text "patient_notes", default: "", null: false
     t.text "doctor_notes", default: "", null: false
     t.boolean "confirmed", default: false, null: false
+    t.bigint "specialization_id"
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
+    t.index ["specialization_id"], name: "index_appointments_on_specialization_id"
   end
 
   create_table "doctors", force: :cascade do |t|
@@ -37,9 +39,8 @@ ActiveRecord::Schema.define(version: 2018_10_10_154910) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.boolean "admin", default: false
-    t.string "specialization", default: ""
     t.bigint "specialization_id"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_doctors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
     t.index ["specialization_id"], name: "index_doctors_on_specialization_id"
@@ -67,5 +68,6 @@ ActiveRecord::Schema.define(version: 2018_10_10_154910) do
 
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "patients"
+  add_foreign_key "appointments", "specializations"
   add_foreign_key "doctors", "specializations"
 end

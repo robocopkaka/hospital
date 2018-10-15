@@ -1,6 +1,13 @@
-<div class="appointment">
+<div class="">
   <div class="ui container raised segment">
     <%= form_for @appointment, html: {class: "ui form"} do |f| %>
+    <% if @appointment && @appointment.errors.any? %>
+      <ul>
+      <% @appointment.errors.full_messages.each do |error_message| %>
+        <li><%= error_message %></li>
+      <% end %>
+      </ul>
+    <% end %>
       <div class="input-field">
         <div class="field">
           <%= f.label :appointment_date%>
@@ -10,15 +17,8 @@
       
       <div class="input-field">
         <div class="field">
-          <%= f.label :doctor %>
-          <%= collection_select(:appointment, :doctor_id, Doctor.all, :id, :name, {}, { class: "ui dropdown" }) %>
-        </div>
-      </div>
-      
-      <div class="input-field">
-        <div class="field">
-          <%= f.label :patient%>
-          <%= collection_select(:appointment, :patient_id, Patient.all, :id, :name, {}, { class: "ui dropdown" }) %>
+          <%= f.label :specialization %>
+          <%= f.collection_select(:specialization_id, retrieve_specializations, :id, :name, {}, { class: "ui dropdown" }) %>
         </div>
       </div>
       

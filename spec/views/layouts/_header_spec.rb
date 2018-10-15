@@ -29,9 +29,10 @@ RSpec.describe 'layouts/_header.html.erb', type: :view do
   describe 'patients logged in' do
     login_patient
     context 'when a patient is logged in' do
-      it 'only shows the link for patients' do
+      it 'only shows the links patients can see' do
         render template: 'layouts/_header.html.erb'
         expect(rendered).to match 'patients'
+        expect(rendered).to match 'Make an appointment'
       end
     end
   end
