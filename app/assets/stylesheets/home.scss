@@ -1,0 +1,58 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "base";
+#home-page {
+  // margin-top: px-to-rem(-15px);
+  color: #FFF;
+  #home-page-background {
+    background: image_url('appointments_2.jpeg');
+    background-repeat: no-repeat center center fixed;
+    height: 50vh;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    margin-top: px-to-rem(-18px);
+    
+    #home-centered-text {
+      font-size: px-to-rem(50px);
+      padding-top: 20vh;
+      
+      .main-section {
+        .button-groups {
+          padding-top: px-to-rem(30px);
+          font-size: px-to-rem(25px);
+          .home-buttons {
+            color: #FFF;
+            background-color: #22BA46;
+            padding: px-to-rem(10px);
+            margin-right: px-to-rem(30px);
+            // border: #22BA46;
+            
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+  .stripe {
+    padding-top: 10vh;
+    .content-header {
+      font-size: px-to-rem(32px);
+    }
+    .content-text {
+      color: black;
+      font-size: px-to-rem(18px);
+      line-height: 2rem;
+    }
+    .content-image {
+      height: auto;
+    }
+  }
+  .extra-space {
+    // margin-bottom: px-to-rem(20px);
+  }
+}
