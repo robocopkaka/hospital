@@ -1,7 +1,8 @@
 // Place all the styles related to the Specializations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import "base";
+// @import "mixins";
 .specialization {
   
   #specialization-form {
@@ -27,11 +28,20 @@
 
 .specializations-list {
   margin-left: 180px;
+  @include initial-large-screen {
+    margin-left: 0px;
+  }
   #specializations-list-header {
     text-align: center;
   }
   .column {
-    margin-right: -100px;
+    margin-right: -50px;
+    @include initial-large-screen {
+      margin-right: -50px;
+    }
+    @include final-large-screen {
+      margin-right: -80px;
+    }
   }
   .specialization-item {
     max-width: 1000px;

@@ -1,0 +1,39 @@
+/* Define media queries for different screen sizes */
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$initial-large-screens-width: 1400px;
+$mid-large-screens-width: 1600px;
+$final-large-screens-width: 1800px;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+/* I don't think I'd use this query a lot */
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) and (max-width: #{$initial-large-screens-width - 1px}) {
+    @content;
+  }
+}
+
+/* Query for my Mac screen */
+@mixin initial-large-screen {
+  @media only screen and (min-width: #{$initial-large-screens-width }) and (max-width: #{$mid-large-screens-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin mid-large-screen {
+  @media only screen and (min-width: #{$mid-large-screens-width }) and (max-width: #{$final-large-screens-width - 1px}) {
+    @content;
+  }
+}
+
+/* Query for the monitor I'm currently working with */
+@mixin final-large-screen {
+  @media only screen and (min-width: #{$final-large-screens-width }) {
+    @content;
+  }
+}
