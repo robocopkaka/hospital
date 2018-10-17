@@ -22,13 +22,23 @@
       .main-section {
         .button-groups {
           padding-top: px-to-rem(30px);
-          font-size: px-to-rem(25px);
+          font-size: px-to-rem(20px);
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
           .home-buttons {
             color: #FFF;
             background-color: #22BA46;
-            padding: px-to-rem(10px);
+            padding: px-to-rem(15px);
             margin-right: px-to-rem(30px);
-            // border: #22BA46;
+            width: px-to-rem(200px);
+            // height: px-to-rem(120px);
+            min-height: px-to-rem(50px);
+            max-height: px-to-rem(100px);
+            max-width: px-to-rem(300px);
+            text-align: center;
+            display: block;
             
             &:hover {
               cursor: pointer;

@@ -1,12 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :controller do
+RSpec.describe HomeController, type: :request do
 
-  describe "GET #index" do
-    it "returns http success" do
-      get :index
-      expect(response).to have_http_status(:success)
+  describe 'GET #index' do
+    it 'returns the index page' do
+      get home_index_path
+      expect(response).to render_template :index
     end
   end
-
 end
