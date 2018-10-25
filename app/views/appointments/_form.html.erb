@@ -1,4 +1,4 @@
-<div class="">
+<div class="appointment-form">
   <div class="ui container raised segment">
     <%= form_for @appointment, html: {class: "ui form"} do |f| %>
     <% if @appointment && @appointment.errors.any? %>
@@ -21,6 +21,16 @@
           <%= f.collection_select(:specialization_id, retrieve_specializations, :id, :name, {}, { class: "ui dropdown" }) %>
         </div>
       </div>
+
+      <% if current_doctor.admin? %>
+        <div class="input-field">
+          <div class="field">
+             <%= f.label :doctor %>
+        <%= f.collection_select(:doctor_id, get_doctors_by_specialization(@appointment.specialization_id), :id, :name, {}, { class: "ui dropdown" }) %>
+          </div>
+        </div>
+        <!-- <%= get_doctors_by_specialization(@appointment.specialization_id) %> -->
+      <% end %>
       
       <div class="button-group">
         <%= f.submit "Submit", class: "ui button button-centered" %>

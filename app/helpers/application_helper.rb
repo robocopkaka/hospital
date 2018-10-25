@@ -22,7 +22,8 @@ module ApplicationHelper
   def build_doctor_links(doctor)
     content = content_tag(:a, 'Doctors',
                           href: doctors_url, class: 'item', id: 'doctors')
-    return unless doctor.admin?
+    content << build_appointments_links
+    return content unless doctor.admin?
     content << build_specialization_links
   end
 
@@ -42,6 +43,30 @@ module ApplicationHelper
       links << content_tag(:a, 'Specializations', href: specializations_url,
                                                   class: 'item',
                                                   id: 'specializations')
+    end
+  end
+
+  def build_appointments_links
+    content_tag(:div, class: %w[ui dropdown item]) do
+      concat 'Appointments'
+      concat content_tag(:i, '', class: %w[dropdown icon])
+      concat build_appointments_dropdown_items
+    end
+  end
+
+  def build_appointments_dropdown_items
+    content_tag(:div, class: 'menu') do
+      links = content_tag(:a, 'View your appointments',
+                          href: '#',
+                          class: 'item',
+                          id: 'view-appointments')
+      if current_doctor.admin?
+        links << content_tag(:a, 'View pending appointments',
+                             href: pending_appointments_url,
+                             class: 'item',
+                             id: 'view-appointments')
+      end
+      links
     end
   end
 end

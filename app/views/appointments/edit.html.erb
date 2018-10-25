@@ -1,1 +1,6 @@
-<%= render 'form' %>
+<div class="edit-appointment">
+  <h2 id="appointment-header">Edit <%= @appointment.patient.name %>'s appointment</h2>
+  <div id="edit-form">
+    <%= render 'form' %>
+  </div>  
+</div>

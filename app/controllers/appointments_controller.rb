@@ -36,6 +36,11 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def pending_appointments
+    @appointments = Appointment.where(confirmed: false)
+                               .paginate(page: params[:page], per_page: 4)
+  end
+
   def destroy
     @appointment.destroy
     redirect_to root_url
