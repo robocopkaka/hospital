@@ -2,7 +2,8 @@
 
 # contains methods fot the appointment controller
 class AppointmentsController < ApplicationController
-  before_action :find_appointment, only: %i[edit update destroy]
+  include AppointmentsHelper
+  before_action :find_appointment, only: %i[edit update destroy decline_appointment]
   attr_accessor :specialization_id
   def new
     @appointment = Appointment.new
@@ -28,17 +29,35 @@ class AppointmentsController < ApplicationController
   end
 
   def update
-    @appointment = Appointment.find(params[:id])
-    if @appointment.update_attributes(appointment_params)
-      redirect_to root_url
+    @appointment.status = 'confirmed'
+    if @appointment.save
+      AppointmentMailer.with(appointment: @appointment)
+                       .confirm_appointment.deliver_later
+      redirect_to pending_appointments_url
     else
       render 'edit'
     end
+    # @appointment.update_attributes(confirmed: true)
   end
 
+  # def approve
+  #   if params[:admin]
+  #     confirm_appointment(@appointment)
+  #   end
+  # end
+
   def pending_appointments
-    @appointments = Appointment.where(confirmed: false)
+    @appointments = Appointment.pending
                                .paginate(page: params[:page], per_page: 4)
+  end
+
+  def decline_appointment
+    # @appointment.status = 'declined'
+    if @appointment.update_attributes(status: 'declined')
+      AppointmentMailer.with(appointment: @appointment)
+                      .decline_appointment.deliver_later
+      redirect_to pending_appointments_path
+    end
   end
 
   def destroy
@@ -54,6 +73,6 @@ class AppointmentsController < ApplicationController
 
   def appointment_params
     params.require(:appointment).permit(:appointment_date,
-                                        :specialization_id)
+                                        :specialization_id, :doctor_id)
   end
 end

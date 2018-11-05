@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hey! Your appointment just got confirmed</h1>
+    <p>
+      <%= @doctor %> will be your doctor for your appointment slated to hold on <%= @appointment.appointment_date.strftime("%B %d, %Y") %>. 
+      Please be on time or you'll have to forfeit your slot.
+      <!-- Add a link to the page for managing an appointment here -->
+    </p>
+  </body>
+</html>

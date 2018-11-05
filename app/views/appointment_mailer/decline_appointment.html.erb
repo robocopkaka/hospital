@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hey! Your appointment was just declined</h1>
+    <p>
+      Your appointment which was meant to hold on <%= @appointment.appointment_date.strftime("%B %d, %Y") %> was just decline. <br />
+
+      We apologize for this inconvenience and urge you to book a new appointment <%= link_to "here", new_appointment_url %>
+      <!-- Add a link to the page for managing an appointment here -->
+    </p>
+  </body>
+</html>

@@ -23,17 +23,23 @@
       </div>
 
       <% if current_doctor.admin? %>
+        <%= hidden_field_tag :admin, true %>
         <div class="input-field">
           <div class="field">
              <%= f.label :doctor %>
-        <%= f.collection_select(:doctor_id, get_doctors_by_specialization(@appointment.specialization_id), :id, :name, {}, { class: "ui dropdown" }) %>
+             <%= f.collection_select(:doctor_id, get_doctors_by_specialization(@appointment.specialization_id), :id, :name, {}, { class: "ui dropdown" }) %>
           </div>
         </div>
         <!-- <%= get_doctors_by_specialization(@appointment.specialization_id) %> -->
       <% end %>
       
       <div class="button-group">
-        <%= f.submit "Submit", class: "ui button button-centered" %>
+        <% if calling_view == 'edit' %>
+          <%= f.submit "Approve appointment", class: "ui button button-centered" %>                 
+        <% elsif calling_view == 'new' %>
+          <%= f.button "Book Appointment", controller: 'appointments', method: 'approve', params: params, class: "ui button button-centered" %>      
+        <% end %>
+       <!-- <%= f.submit "Submit", class: "ui button button-centered" %> -->
       </div>
     <% end %>
   </div>

@@ -11,4 +11,9 @@ $(document).on 'turbolinks:load', ->
   $('.message .close').on 'click', ->
     $(this).closest('.message').transition 'fade'
     return
+
+  doctor = document.getElementById('appointment_doctor_id')
+  if doctor
+    $('#appointment_specialization_id').prop 'disabled', true
+    $('#appointment_appointment_date').prop 'disabled', true
   return

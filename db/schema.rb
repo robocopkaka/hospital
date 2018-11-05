@@ -10,25 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_12_102705) do
+ActiveRecord::Schema.define(version: 2018_11_05_153453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "appointments", force: :cascade do |t|
-    t.datetime "appointment_date"
-    t.bigint "doctor_id"
-    t.bigint "patient_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "patient_notes", default: "", null: false
-    t.text "doctor_notes", default: "", null: false
-    t.boolean "confirmed", default: false, null: false
-    t.bigint "specialization_id"
-    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
-    t.index ["patient_id"], name: "index_appointments_on_patient_id"
-    t.index ["specialization_id"], name: "index_appointments_on_specialization_id"
-  end
+# Could not dump table "appointments" because of following StandardError
+#   Unknown type 'status' for column 'status'
 
   create_table "doctors", force: :cascade do |t|
     t.string "name"

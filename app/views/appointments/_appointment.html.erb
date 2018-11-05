@@ -10,10 +10,12 @@
       <div class="extra content">
        <!-- <div class="ui left floated"> -->
         <!-- </div> -->
+        <div class="ui left floated">
+          <%= link_to semantic_icon("check circle outline icon"), edit_appointment_path(appointment), id: "edit-resource"%>          
+        </div>
         <div class="ui right floated">
-          <%= link_to semantic_icon("check circle outline icon"), edit_appointment_path(appointment), id: "edit-resource"%>
-          <%= link_to semantic_icon("times circle outline icon"), appointment, method: :delete,
-                                         data: {confirm: "You sure?"},
+          <%= link_to semantic_icon("times circle outline icon"), decline_appointment_url(id: appointment.id),
+                                         data: {confirm: "Are you sure you want to delete this appointment?"},
                                          id: "delete-resource" %> 
         </div>
       </div>
