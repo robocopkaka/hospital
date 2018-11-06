@@ -1,0 +1,24 @@
+<div class="column">
+  <div class="item">
+    <div class="ui raised link card">
+      <div class="content">
+        <div class="header" id="specialization"><%= appointment.specialization.name %></div>
+        <div class="description">Patient: <%= appointment.patient.name %></div>
+        <!-- <div class="description" id="patient-email"><%= appointment.patient.email %></div> -->
+        <div id="appointment-date"><%= appointment.appointment_date.strftime("%B %d, %Y") %></div>
+      </div>
+      <div class="extra content">
+       <!-- <div class="ui left floated"> -->
+        <!-- </div> -->
+        <div class="ui left floated">
+          <%= link_to semantic_icon("check circle outline icon"), edit_appointment_path(appointment), id: "edit-resource"%>          
+        </div>
+        <div class="ui right floated">
+          <%= link_to semantic_icon("times circle outline icon"), decline_appointment_url(id: appointment.id),
+                                         data: {confirm: "Are you sure you want to delete this appointment?"},
+                                         id: "delete-resource" %> 
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>

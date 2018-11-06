@@ -1,0 +1,22 @@
+<div class="pending-appointments">
+  <div class="ui segment">
+    <div class="row">
+      <div class="ui stackable two column grid">
+        <%= render @appointments %>
+      </div>
+    </div>
+  </div>
+  <div class="left-navigation-link">
+    <div id="chevron-left">
+   <!-- <%= semantic_icon("chevron left icon") %> -->     
+    </div>
+  </div>
+  <div class="right-navigation-links">
+   <!-- <%= semantic_icon("chevron right icon", id: "chevron-right") %> -->
+  </div>
+</div>
+<div id="pagination-links">
+  <%= will_paginate @appointments, renderer: WillPaginateSemanticUi::ActionView::Renderer %>    
+</div>  
+
+  

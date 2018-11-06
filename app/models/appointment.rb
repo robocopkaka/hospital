@@ -2,6 +2,11 @@
 
 # Appointment model
 class Appointment < ApplicationRecord
+  enum status: {
+    pending: 'pending',
+    confirmed: 'confirmed',
+    declined: 'declined'
+  }
   before_validation :set_default_doctor_id
   belongs_to :doctor
   belongs_to :patient

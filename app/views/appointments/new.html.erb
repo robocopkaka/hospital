@@ -3,5 +3,5 @@
   <h2 id="patient-appointment">
     Make an appointment
   </h2>
-  <%= render 'form' %>
+  <%= render partial: 'form', locals: { calling_view: 'new' } %>
 </div>

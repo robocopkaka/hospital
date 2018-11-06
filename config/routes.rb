@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'patients/edit'
   get 'patients/show'
   get 'patients/index'
+  get 'pending_appointments', to: 'appointments#pending_appointments'
+  get 'decline_appointment', to: 'appointments#decline_appointment'
   # get 'doctors/new'
   # get 'doctors/edit'
   # get 'doctors/show'
