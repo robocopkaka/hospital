@@ -7,7 +7,7 @@
     <h1>We have a new appointment</h1>
     <p>
       <%= @patient %> just booked an appointment with the following specialization: <%= @specialization %> 
-      Please confirm/decline their appointments so that they can plan their days
+      Please <%= link_to "confirm/decline", pending_appointments_url %> their appointments so that they can plan their days
       <!-- Add a link to the page for managing an appointment here -->
     </p>
   </body>

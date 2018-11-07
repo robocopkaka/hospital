@@ -1,5 +1,5 @@
 class AppointmentMailer < ApplicationMailer
-  default from: 'notifications@andela.com'
+  default from: 'hospital@kachirocks.com'
   before_action :retrieve_admins, only: %i(new_appointment confirm_appointment)
 
   def new_appointment
@@ -11,9 +11,10 @@ class AppointmentMailer < ApplicationMailer
 
   def confirm_appointment
     @appointment = params[:appointment]
-    @patient = @appointment.patient.name
-    @doctor = @appointment.doctor.name
-    mail(to: @patient, subject: 'Your appointment has just been confirmed')
+    @patient = @appointment.patient
+    @doctor = @appointment.doctor
+    mail(to: [@patient.email, @doctor.email],
+         subject: 'Your appointment has just been confirmed')
   end
 
   def decline_appointment
