@@ -4,7 +4,7 @@ RSpec.describe AppointmentsController, type: :request do
   let!(:doctor) { create :doctor_with_specialization, :admin }
   let!(:patient) { create :patient }
   let!(:specialization) { create :specialization }
-  let!(:params) do
+  let!(:legit_params) do
     { appointment: {
       appointment_date: Time.now,
       doctor_id: doctor.id,
@@ -16,7 +16,8 @@ RSpec.describe AppointmentsController, type: :request do
     { appointment: {
       doctor_id: 'a',
       patient_id: 'a',
-      specialization_id: 'a'
+      specialization_id: 'a',
+      appointment_date: 'a'
     } }
   end
   describe 'GET #new' do
@@ -29,7 +30,7 @@ RSpec.describe AppointmentsController, type: :request do
   describe 'POST #create' do
     it 'should redirect to the home page if an appointment is saved successfully' do
       sign_in patient
-      post appointments_path, params: params
+      post appointments_path, params: legit_params
       expect(response).to redirect_to :root
       follow_redirect!
     end
@@ -54,8 +55,8 @@ RSpec.describe AppointmentsController, type: :request do
     describe 'PUT #update' do
       it 'should redirect to the home page if update is successful' do
         sign_in patient
-        put appointment_path(appointment.id), params: params
-        expect(response).to redirect_to :root
+        put appointment_path(appointment.id), params: legit_params
+        expect(response).to redirect_to :pending_appointments
         follow_redirect!
       end
       it 'should render the edit template if the edit isn\'t successful' do

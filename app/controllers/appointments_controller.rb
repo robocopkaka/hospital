@@ -13,6 +13,7 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = current_patient.appointments.build(appointment_params)
+    # binding.pry
     if @appointment.save
       AppointmentMailer.with(appointment: @appointment)
                        .new_appointment.deliver_later
@@ -30,7 +31,7 @@ class AppointmentsController < ApplicationController
 
   def update
     @appointment.status = 'confirmed'
-    if @appointment.save
+    if @appointment.update_attributes(appointment_params)
       AppointmentMailer.with(appointment: @appointment)
                        .confirm_appointment.deliver_later
       redirect_to pending_appointments_url

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :appointment do
-    appointment_date { Time.now }
+    appointment_date { Time.now + 1.day }
     doctor_id { create(:doctor_with_specialization).id }
     patient_id { create(:patient).id }
     specialization_id { create(:specialization).id }

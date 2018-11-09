@@ -11,7 +11,7 @@
       <div class="input-field">
         <div class="field">
           <%= f.label :appointment_date%>
-          <%= f.date_field :appointment_date %>
+          <%= f.date_field :appointment_date, selected: Time.now + 1.day, min: Time.now %>
         </div>
       </div>
       
