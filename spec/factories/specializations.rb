@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :specialization do
-    name { Faker::OnePiece.character }
+    name { Faker::Name.first_name }
 
     factory :specialization_with_doctor do
       after(:create) do |specialization|
