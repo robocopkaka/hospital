@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <% if current_doctor.admin? %>
+      <% if current_doctor && current_doctor.admin? %>
         <%= hidden_field_tag :admin, true %>
         <div class="input-field">
           <div class="field">

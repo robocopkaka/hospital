@@ -28,3 +28,6 @@
 .DS_STORE
 coverage
 spec/examples.txt
+
+# Ignore application configuration
+/config/application.yml

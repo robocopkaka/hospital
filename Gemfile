@@ -7,6 +7,8 @@ ruby '2.4.1'
 gem 'rails', '~> 5.2.0'
 # Use devise
 gem 'devise'
+# Use Figaro
+gem 'figaro'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
