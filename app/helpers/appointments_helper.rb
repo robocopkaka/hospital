@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Helpers for Appointments controllers and views
 module AppointmentsHelper
   def retrieve_specializations
-    Specialization.all.order(name: :asc)
+    Specialization.joins(:doctors).order(name: :asc).uniq
   end
 
   def get_doctors_by_specialization(specialization_id)
