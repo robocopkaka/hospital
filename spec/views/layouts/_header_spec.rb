@@ -22,6 +22,7 @@ RSpec.describe 'layouts/_header.html.erb', type: :view do
       it 'renders admin-only links' do
         render template: 'layouts/_header.html.erb'
         expect(rendered).to match 'Specializations'
+        expect(rendered).to match 'Patients'
       end
     end
   end
@@ -31,8 +32,8 @@ RSpec.describe 'layouts/_header.html.erb', type: :view do
     context 'when a patient is logged in' do
       it 'only shows the links patients can see' do
         render template: 'layouts/_header.html.erb'
-        expect(rendered).to match 'patients'
         expect(rendered).to match 'Make an appointment'
+        expect(rendered).to_not match 'Patients'
       end
     end
   end

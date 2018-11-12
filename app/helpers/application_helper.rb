@@ -11,19 +11,19 @@ module ApplicationHelper
       # render stuff
       build_doctor_links(current_doctor)
     elsif !current_patient.nil?
-      content = content_tag(:a, 'Patients',
-                            href: patients_url, class: 'item', id: 'patients')
-      content << content_tag(:a, 'Make an appointment',
-                             href: new_appointment_path,
-                             class: 'item', id: 'appointments')
+      content_tag(:a, 'Make an appointment',
+                  href: new_appointment_path,
+                  class: 'item', id: 'appointments')
     end
   end
 
   def build_doctor_links(doctor)
-    content = content_tag(:a, 'Doctors',
-                          href: doctors_url, class: 'item', id: 'doctors')
-    content << build_appointments_links
+    content = build_appointments_links
     return content unless doctor.admin?
+    content << content_tag(:a, 'Doctors',
+                           href: doctors_url, class: 'item', id: 'doctors')
+    content << content_tag(:a, 'Patients',
+                           href: patients_url, class: 'item', id: 'patients')
     content << build_specialization_links
   end
 
