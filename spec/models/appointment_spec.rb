@@ -1,9 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Appointment, type: :model do
+  let!(:doctor) { create :doctor_with_specialization, admin: true }
   describe 'values are present' do
-    let!(:doctor) { create :doctor_with_specialization, admin: true }
     it { should validate_presence_of(:appointment_date) }
+  end
+
+  describe 'appointment date uniqueness scope with specialization_id' do
+    subject { FactoryBot.build(:appointment) }
+    message = 'You can only book one appointment with a specialization per day'
+    it {
+      should validate_uniqueness_of(:appointment_date)
+        .scoped_to(:specialization_id)
+        .with_message(message)
+    }
   end
 
   describe 'only accept date at least one day from current date' do

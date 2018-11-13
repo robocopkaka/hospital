@@ -13,6 +13,13 @@ class Appointment < ApplicationRecord
   belongs_to :specialization
 
   validates_presence_of :appointment_date
+
+  # validate using a scope so users can't book more than one appointment
+  # with the same specialization in a day
+  validates :appointment_date, uniqueness: {
+    scope: :specialization_id,
+    message: 'You can only book one appointment with a specialization per day'
+  }
   validate :date_in_future
 
   # this method sets a default doctor_id before saving an appointment
