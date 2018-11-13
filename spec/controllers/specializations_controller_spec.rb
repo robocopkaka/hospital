@@ -15,7 +15,7 @@ RSpec.describe SpecializationsController, type: :request do
   describe 'POST #create' do
     it 'saves a new specialization and redirect to the home page' do
       post specializations_path, params: specialization
-      expect(response).to redirect_to :root
+      expect(response).to redirect_to :specializations
       follow_redirect!
     end
 
@@ -36,7 +36,7 @@ RSpec.describe SpecializationsController, type: :request do
   describe 'PUT #update' do
     it 'should redirect to the home page if the update is successful' do
       put specialization_path(test_specialization.id), params: specialization
-      expect(response).to redirect_to :root
+      expect(response).to redirect_to :specializations
       follow_redirect!
     end
 

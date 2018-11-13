@@ -1,5 +1,12 @@
 <div class="ui container raised segment">
   <%= form_for @specialization, html: {class: "ui form"} do |f| %>
+    <% if @specialization && @specialization.errors.any? %>
+      <ul>
+      <% @specialization.errors.full_messages.each do |error_message| %>
+        <li><%= error_message %></li>
+      <% end %>
+      </ul>
+    <% end %>
   
    <div class="input-field">
      <div class="field">

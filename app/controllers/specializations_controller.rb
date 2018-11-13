@@ -7,7 +7,7 @@ class SpecializationsController < ApplicationController
   def create
     @specialization = Specialization.new(specialization_params)
     if @specialization.save
-      redirect_to root_url
+      redirect_to specializations_url
     else
       render 'new'
     end
@@ -17,12 +17,12 @@ class SpecializationsController < ApplicationController
 
   def update
     if @specialization.update_attributes(specialization_params)
-      redirect_to root_url
+      redirect_to specializations_url
     else
       render 'edit'
     end
   end
-  
+
   def index
     @specializations = Specialization.all
   end
