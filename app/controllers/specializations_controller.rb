@@ -24,7 +24,7 @@ class SpecializationsController < ApplicationController
   end
 
   def index
-    @specializations = Specialization.all
+    @specializations = Specialization.all.paginate(page: params[:page], per_page: 6)
   end
 
   def destroy
