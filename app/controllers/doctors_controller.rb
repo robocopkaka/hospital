@@ -1,4 +1,5 @@
 class DoctorsController < ApplicationController
+  include DoctorsHelper
   before_action :find_doctor,
                 only: %i[edit update_password show destroy appointments]
   before_action :redirect_unless_admin, only: :destroy
@@ -35,8 +36,10 @@ class DoctorsController < ApplicationController
   def show; end
 
   def destroy
+    # binding.pry
+    reassign_appointments(@doctor) if doctor_has_appointments?(@doctor)
     @doctor.destroy
-    redirect_to root_url
+    redirect_to root_path
   end
 
   def appointments
@@ -53,7 +56,7 @@ class DoctorsController < ApplicationController
   end
 
   def find_doctor
-    @doctor = current_doctor
+    @doctor = Doctor.find_by(id: params[:id]) || current_doctor
     # @doctor = Doctor.find_by(id: params[:id])
   end
 
