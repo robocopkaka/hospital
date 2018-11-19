@@ -1,6 +1,8 @@
 class AppointmentMailer < ApplicationMailer
   default from: 'hospital@kachirocks.com'
-  before_action :retrieve_admins, only: %i(new_appointment confirm_appointment)
+  before_action :retrieve_admins, only: %i[
+    new_appointment confirm_appointment change_of_doctor
+  ]
 
   def new_appointment
     @appointment = params[:appointment]
@@ -22,6 +24,11 @@ class AppointmentMailer < ApplicationMailer
     @patient = @appointment.patient.name
     @doctor = @appointment.doctor.name
     mail(to: @patient, subject: 'Your appointment has been declined')
+  end
+
+  def change_of_doctor
+    @patient = params[:patient]
+    mail(to: @patient.email, bcc: @doctors, subject: 'Change of doctor')
   end
 
   def retrieve_admins

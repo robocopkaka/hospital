@@ -3,7 +3,6 @@ class DoctorsController < ApplicationController
   before_action :find_doctor,
                 only: %i[edit update_password show destroy appointments]
   before_action :redirect_unless_admin, only: :destroy
-  # new method
   def new
     @doctor = Doctor.new
   end
@@ -20,8 +19,10 @@ class DoctorsController < ApplicationController
 
   def edit; end
 
-  def update
-    if @doctor.update_attributes(doctor_params)
+  def update_password
+    if @doctor.update_with_password(doctor_params)
+      # Sign in the user by passing validation in case their password changed
+      bypass_sign_in @doctor, scope: :doctor
       redirect_to root_url
     else
       render 'edit'
@@ -37,7 +38,7 @@ class DoctorsController < ApplicationController
   def destroy
     reassign_appointments(@doctor) if doctor_has_appointments?(@doctor)
     @doctor.destroy
-    redirect_to root_url
+    redirect_to root_path
   end
 
   def appointments
@@ -45,11 +46,20 @@ class DoctorsController < ApplicationController
   end
 
   private
+
   def doctor_params
-    params.require(:doctor).permit(:name, :email)
+    params.require(:doctor).permit(
+      :name, :email, :specialization_id, :password, :password_confirmation,
+      :current_password
+    )
   end
 
   def find_doctor
-    @doctor = Doctor.find_by(id: params[:id])
+    @doctor = Doctor.find_by(id: params[:id]) || current_doctor
+    # @doctor = Doctor.find_by(id: params[:id])
+  end
+
+  def redirect_unless_admin
+    redirect_to root_url unless current_doctor.admin
   end
 end
