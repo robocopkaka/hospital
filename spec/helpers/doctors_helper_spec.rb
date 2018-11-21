@@ -11,22 +11,5 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe DoctorsHelper, type: :helper do
-  let!(:appointment) { create :appointment }
-  context 'when a doctor checks if they have appointments' do
-    it 'returns true if he/she has' do
-      doctor = appointment.doctor
-      expect(doctor_has_appointments?(doctor)).to eq true
-      expect(doctor_has_appointments?(doctor)).to_not eq false
-    end
-  end
-
-  context 'when a doctor\'s appointments are reassigned' do
-    let!(:appointment) { create :appointment }
-    let!(:doctor) { create :doctor_with_specialization, admin: true }
-    it 'should remove all appointments from the doctor' do
-      doctor = appointment.doctor
-      reassign_appointments(doctor)
-      expect(doctor.appointments.count).to eq 0
-    end
-  end
+  pending "add some examples to (or delete) #{__FILE__}"
 end

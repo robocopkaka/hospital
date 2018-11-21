@@ -1,24 +1,4 @@
-<div class="update-password">
-  <div id="edit-doctor">
-    <h1>Update your password</h1>
-    <div class="ui raised segment container centered" id="edit-doctor-form">
-      <%= form_for(@doctor, :url => { :action => "update_password" }, html: { class: "ui form" } ) do |f| %>
-        <div class="field">
-          <%= f.label :current_password %> <i>(Enter your current password to confirm your changes)</i><br />
-          <%= f.password_field :current_password %>
-        </div>
-        <div class="field">
-          <%= f.label :password, "New Password" %><br />
-          <%= f.password_field :password, :autocomplete => "off"  %>
-        </div>
-        <div class="field">
-          <%= f.label :password_confirmation, "Confirm your new password" %><br />
-          <%= f.password_field :password_confirmation %>
-        </div>
-        <div class="button-group">
-          <%= f.submit "Update Password", class: "ui button button-centered" %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+<div class="centered">
+  <h1>Edit Dr <%= @doctor.name %></h1>
+  <%= render "form" %>
 </div>

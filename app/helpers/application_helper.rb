@@ -20,30 +20,11 @@ module ApplicationHelper
   def build_doctor_links(doctor)
     content = build_appointments_links
     return content unless doctor.admin?
-    content << build_doctor_dropdown
-    # content << content_tag(:a, 'Doctors',
-    #                        href: doctors_url, class: 'item', id: 'doctors')
+    content << content_tag(:a, 'Doctors',
+                           href: doctors_url, class: 'item', id: 'doctors')
     content << content_tag(:a, 'Patients',
                            href: patients_url, class: 'item', id: 'patients')
     content << build_specialization_links
-  end
-
-  def build_doctor_dropdown
-    content_tag(:div, class: %w[ui dropdown item]) do
-      concat 'Doctors'
-      concat content_tag(:i, '', class: %w[dropdown icon])
-      concat build_doctor_dropdown_items
-    end
-  end
-
-  def build_doctor_dropdown_items
-    content_tag(:div, class: 'menu') do
-      links = content_tag(:a, 'Add a new doctor',
-                          href: new_doctor_path, class: 'item',
-                          id: 'add-doctor')
-      links << content_tag(:a, 'View Doctors',
-                           href: doctors_url, class: 'item', id: 'doctors')
-    end
   end
 
   def build_specialization_links
