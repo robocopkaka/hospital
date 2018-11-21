@@ -20,7 +20,8 @@ class Appointment < ApplicationRecord
     scope: :specialization_id,
     message: 'You can only book one appointment with a specialization per day'
   }
-  validate :date_in_future
+  # only run validation when creating new records
+  validate :date_in_future, on: :create
 
   # this method sets a default doctor_id before saving an appointment
   # the doctor_id doesn't allow null values so an actual value has to be set
