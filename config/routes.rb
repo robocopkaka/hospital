@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'home/index'
-  devise_for :doctors, path_prefix: 'admin'
+  devise_for :doctors
   devise_for :patients
   get 'patients/new'
   get 'patients/edit'
@@ -16,13 +16,8 @@ Rails.application.routes.draw do
   resources :patients do
     get 'appointments', on: :member
   end
-  resources :doctors, except: :edit do
+  resources :doctors do
     get 'appointments', on: :member
-  end
-  resource :doctor, only: [:edit] do
-    collection do
-      patch 'update_password'
-    end
   end
   root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

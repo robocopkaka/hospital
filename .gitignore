@@ -17,7 +17,6 @@
 /storage/*
 
 /node_modules
-/.idea
 /yarn-error.log
 
 /public/assets

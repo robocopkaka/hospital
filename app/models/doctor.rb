@@ -12,7 +12,4 @@ class Doctor < ApplicationRecord
   belongs_to :specialization
   validates_presence_of :name, :email
   validates :email, format: { with: EmailValidation::REGEX }
-  def self.fetch_admin
-    Doctor.where(admin: true).first
-  end
 end
