@@ -11,9 +11,4 @@ class AppointmentMailerPreview < ActionMailer::Preview
   def decline_appointment
     AppointmentMailer.with(appointment: Appointment.last).decline_appointment
   end
-
-  def change_of_doctor
-    AppointmentMailer.with(patient: Patient.last).change_of_doctor
-  end
-
 end
