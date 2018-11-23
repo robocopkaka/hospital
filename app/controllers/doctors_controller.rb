@@ -11,7 +11,7 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.new(doctor_params)
     if @doctor.save
       DoctorMailer.with(doctor: @doctor).update_password.deliver_later
-      redirect_to doctors_url
+      redirect_to doctors_url, success: 'Doctor was created successfully'
     else
       render 'new'
     end
