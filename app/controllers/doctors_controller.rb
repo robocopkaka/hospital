@@ -11,7 +11,7 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.new(doctor_params)
     if @doctor.save
       DoctorMailer.with(doctor: @doctor).update_password.deliver_later
-      redirect_to doctors_url, success: 'Doctor was created successfully'
+      redirect_to doctors_path, success: 'Doctor was created successfully'
     else
       render 'new'
     end
@@ -23,7 +23,7 @@ class DoctorsController < ApplicationController
     if @doctor.update_with_password(doctor_params)
       # Sign in the user by passing validation in case their password changed
       bypass_sign_in @doctor, scope: :doctor
-      redirect_to root_url
+      redirect_to root_path, info: 'Your password was updated successfully'
     else
       render 'edit'
     end
@@ -38,7 +38,7 @@ class DoctorsController < ApplicationController
   def destroy
     reassign_appointments(@doctor) if doctor_has_appointments?(@doctor)
     @doctor.destroy
-    redirect_to root_path
+    redirect_to root_path, danger: "#{@doctor.name} was deleted successfully"
   end
 
   def appointments

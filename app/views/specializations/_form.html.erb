@@ -3,7 +3,7 @@
     <% if @specialization && @specialization.errors.any? %>
       <ul>
       <% @specialization.errors.full_messages.each do |error_message| %>
-        <li><%= error_message %></li>
+        <li class="error-messages"><%= error_message %></li>
       <% end %>
       </ul>
     <% end %>

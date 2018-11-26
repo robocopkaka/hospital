@@ -1,5 +1,12 @@
 <div class="ui raised segment container centered">
   <%= form_for(@doctor, html: {class: "ui form"}) do |f| %>
+    <% if @doctor && @doctor.errors.any? %>
+      <ul>
+        <% @doctor.errors.full_messages.each do |error_message| %>
+          <li class="error-messages"><%= error_message %></li>
+        <% end %>
+      </ul>
+    <% end %>
     
     <div class="field">
       <%= f.label :name %><br />
