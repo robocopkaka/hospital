@@ -4,7 +4,7 @@
     <% if @appointment && @appointment.errors.any? %>
       <ul>
       <% @appointment.errors.full_messages.each do |error_message| %>
-        <li><%= error_message %></li>
+        <li class="error-messages"><%= error_message %></li>
       <% end %>
       </ul>
     <% end %>
