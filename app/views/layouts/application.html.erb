@@ -13,12 +13,7 @@
   <body class="main-site">
     <%= render "layouts/header" %>
     <!-- <div class="container"> -->
-    <% flash.each do |key, value| %>
-      <div class="ui <%= key %> message">
-        <i class="close icon"></i>
-        <%= value %>
-      </div>
-    <% end %>
+    <%= render partial: 'flash_messages', flash: flash %>
     <!-- </div> -->
     <div class="main-content"><%= yield %></div>
     <%= render "layouts/footer" %>

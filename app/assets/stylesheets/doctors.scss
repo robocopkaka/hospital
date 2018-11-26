@@ -1,10 +1,11 @@
 // Place all the styles related to the Doctors controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.centered{
+@import "base";
+#new-doctor{
   width: 50%;
   margin: auto;
+  padding-top: 5vh;
   .button-group {
     padding-top: 20px;
     .button-centered {
@@ -15,8 +16,39 @@
     font-size: 15px;
     margin-top: 10px;
   }
+  #new-doctor-heading {
+    text-align: center;
+    padding-bottom: px-to-rem(10px);
+  }
 }
 
 .doctor-details {
   padding-top: 10vh;
 }
+
+.update-password {
+  height: 100%;
+  margin: 0;
+  #edit-doctor {
+    height: 100%;
+    margin-top: px-to-rem(-30px);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    // margin: auto;
+    #edit-doctor-form {
+      width: 30%;
+      padding-top: 2vh;
+
+      .button-group {
+        padding-top: 20px;
+        .button-centered {
+          width: 100%;
+        }
+      }
+    }
+    // font-size: px-to-rem(50px);
+  }
+}
+

@@ -17,10 +17,8 @@ class AppointmentsController < ApplicationController
     if @appointment.save
       AppointmentMailer.with(appointment: @appointment)
                        .new_appointment.deliver_later
-      redirect_to root_url
-      flash[:success] = 'Your appointment was created successfully'
+      redirect_to root_path, success: 'Your appointment was created successfully'
     else
-      flash[:error] = 'Looks like your appointment had some errors'
       render 'new'
     end
   end
@@ -34,7 +32,8 @@ class AppointmentsController < ApplicationController
     if @appointment.update_attributes(appointment_params)
       AppointmentMailer.with(appointment: @appointment)
                        .confirm_appointment.deliver_later
-      redirect_to pending_appointments_url
+      redirect_to pending_appointments_path,
+                  info: 'Appointment updated successfully'
     else
       render 'edit'
     end
@@ -56,14 +55,15 @@ class AppointmentsController < ApplicationController
     # @appointment.status = 'declined'
     if @appointment.update_attributes(status: 'declined')
       AppointmentMailer.with(appointment: @appointment)
-                      .decline_appointment.deliver_later
-      redirect_to pending_appointments_path
+                       .decline_appointment.deliver_later
+      redirect_to pending_appointments_path,
+                  info: 'Appointment declined successfully'
     end
   end
 
   def destroy
     @appointment.destroy
-    redirect_to root_url
+    redirect_to root_path, danger: 'Appointment deleted successfully'
   end
 
   private

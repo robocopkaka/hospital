@@ -1,5 +1,6 @@
 class SpecializationsController < ApplicationController
   before_action :find_specialization, only: %i[edit update destroy]
+  before_action :admin?, only: :destroy
   def new
     @specialization = Specialization.new
   end
@@ -7,7 +8,8 @@ class SpecializationsController < ApplicationController
   def create
     @specialization = Specialization.new(specialization_params)
     if @specialization.save
-      redirect_to specializations_url
+      redirect_to specializations_path,
+                  success: 'Specialization added successfully'
     else
       render 'new'
     end
@@ -17,7 +19,8 @@ class SpecializationsController < ApplicationController
 
   def update
     if @specialization.update_attributes(specialization_params)
-      redirect_to specializations_url
+      redirect_to specializations_url,
+                  info: 'Specialization updated successfully'
     else
       render 'edit'
     end
@@ -29,7 +32,7 @@ class SpecializationsController < ApplicationController
 
   def destroy
     @specialization.destroy
-    redirect_to root_url
+    redirect_to root_path
   end
 
   private
@@ -40,5 +43,10 @@ class SpecializationsController < ApplicationController
 
   def find_specialization
     @specialization = Specialization.find_by(id: params[:id])
+  end
+
+  def admin?
+    return if current_doctor.admin?
+    redirect_to root_path, danger: 'Hey, you\'re not an admin'
   end
 end
