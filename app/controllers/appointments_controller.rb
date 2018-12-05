@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require 'will_paginate/array'
 # contains methods fot the appointment controller
 class AppointmentsController < ApplicationController
   include AppointmentsHelper
   before_action :find_appointment, only: %i[edit update destroy decline_appointment]
+  before_action :logged_in_user, only: %i[appointment_history past_appointments future_appointments]
   attr_accessor :specialization_id
   def new
     @appointment = Appointment.new
@@ -49,6 +51,27 @@ class AppointmentsController < ApplicationController
   def pending_appointments
     @appointments = Appointment.pending
                                .paginate(page: params[:page], per_page: 4)
+  end
+
+  def appointment_history
+    # binding.pry
+    appointments = @logged_in_user.appointments.where(status: :confirmed)
+    appointments_hash = HashWithIndifferentAccess.new
+    appointments_hash[:past_appointments] = []
+    appointments_hash[:future_appointments] = []
+    @appointments = group_appointments(appointments, appointments_hash)
+  end
+
+  def past_appointments
+    @appointments = {}
+    @appointments[:past_appointments] = @logged_in_user.appointments.where('status = ? AND appointment_date < ?', :confirmed, Time.now)
+    @appointments[:past_appointments] = @appointments[:past_appointments].paginate(page: params[:page], per_page: 1)
+    @appointments
+  end
+
+  def future_appointments
+    @future_appointments = @logged_in_user.appointments.where('status = ? AND appointment_date > ?', :confirmed, Time.now)
+    @future_appointments = @future_appointments.paginate(page: params[:page], per_page: 1)
   end
 
   def decline_appointment

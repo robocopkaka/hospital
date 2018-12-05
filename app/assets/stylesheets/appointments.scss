@@ -34,38 +34,6 @@
       .ui.stackable.two.column.grid {
         .column {
           margin-right: px-to-rem(-50px);
-          .item {
-            // height: px-to-rem(120px);
-            // max-height: px-to-rem(140px);
-            .content {
-              .header {
-                font-size: px-to-rem(28px);
-                font-weight: bold;
-                margin-bottom: px-to-rem(15px);
-                // text-transform: uppercase;
-              }
-              #specialization {
-                font-weight: 800;
-                font-style: italic;
-                // font-size: px-to-rem(15px);
-              }
-              #appointment-date {
-                font-weight: bold;
-                padding-top: px-to-rem(5px);
-              }
-            }
-            .extra.content {
-              margin-top: px-to-rem(15px);
-              padding-bottom: px-to-rem(10px);
-              font-size: px-to-rem(25px);
-              #edit-resource {
-                color: #22BA46;
-              }
-              #delete-resource {
-                color: #E15554;
-              }
-            }
-          }
         }
       }
       .active.dimmer {
@@ -148,5 +116,57 @@
     // justify-content: center;
     width: 100%;
     padding-top: px-to-rem(30px);
+  }
+}
+
+#user-appointments {
+  //width: 80%;
+  //margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  .item {
+    padding-bottom: px-to-rem(30px);
+  }
+
+  #past-appointments {
+    //padding-right: px-to-rem(100px);
+    //display: flex;
+  }
+  #future-appointments {
+    //display: flex;
+  }
+}
+
+.item {
+  // height: px-to-rem(120px);
+  // max-height: px-to-rem(140px);
+  .content {
+    .header {
+      font-size: px-to-rem(28px);
+      font-weight: bold;
+      margin-bottom: px-to-rem(15px);
+      // text-transform: uppercase;
+    }
+    #specialization {
+      font-weight: 800;
+      font-style: italic;
+      // font-size: px-to-rem(15px);
+    }
+    #appointment-date {
+      font-weight: bold;
+      padding-top: px-to-rem(5px);
+    }
+  }
+  .extra.content {
+    margin-top: px-to-rem(15px);
+    padding-bottom: px-to-rem(10px);
+    font-size: px-to-rem(25px);
+    #edit-resource {
+      color: #22BA46;
+    }
+    #delete-resource {
+      color: #E15554;
+    }
   }
 }

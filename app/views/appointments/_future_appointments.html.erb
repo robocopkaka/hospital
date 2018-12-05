@@ -1,0 +1,3 @@
+<h2>Future appointments</h2>
+<%= render partial: "appointment", collection: @appointments[:future_appointments] %>
+<%= will_paginate @appointments[:future_appointments], renderer: WillPaginateSemanticUi::ActionView::Renderer %>
