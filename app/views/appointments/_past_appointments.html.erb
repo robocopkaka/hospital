@@ -1,3 +1,7 @@
 <h2>Past appointments</h2>
-<%= render partial: 'appointment', collection: @appointments[:past_appointments] %>
+<div class="ui two column grid">
+  <div class="row">
+    <%= render partial: 'appointment', collection: @appointments[:past_appointments] %>
+  </div>
+</div>
 <%= will_paginate @appointments[:past_appointments], renderer: WillPaginateSemanticUi::ActionView::Renderer %>

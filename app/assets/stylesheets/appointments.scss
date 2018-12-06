@@ -120,21 +120,35 @@
 }
 
 #user-appointments {
+  height: 105%;
   //width: 80%;
   //margin: auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  //justify-content: space-evenly;
   .item {
     padding-bottom: px-to-rem(30px);
   }
 
   #past-appointments {
+    background: #68D89B;
+    height: 100%;
+    padding-left: px-to-rem(80px);
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
     //padding-right: px-to-rem(100px);
     //display: flex;
   }
   #future-appointments {
     //display: flex;
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
   }
 }
 

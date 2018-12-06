@@ -64,14 +64,26 @@ class AppointmentsController < ApplicationController
 
   def past_appointments
     @appointments = {}
-    @appointments[:past_appointments] = @logged_in_user.appointments.where('status = ? AND appointment_date < ?', :confirmed, Time.now)
-    @appointments[:past_appointments] = @appointments[:past_appointments].paginate(page: params[:page], per_page: 1)
+    query = 'status = ? AND appointment_date < ?'
+    @appointments[:past_appointments] = @logged_in_user.appointments
+                                                       .where(query, :confirmed,
+                                                              Time.now)
+    @appointments[:past_appointments] = @appointments[:past_appointments]
+                                        .paginate(page: params[:page],
+                                                  per_page: 2)
     @appointments
   end
 
   def future_appointments
-    @future_appointments = @logged_in_user.appointments.where('status = ? AND appointment_date > ?', :confirmed, Time.now)
-    @future_appointments = @future_appointments.paginate(page: params[:page], per_page: 1)
+    @appointments = {}
+    query = 'status = ? AND appointment_date > ?'
+    @appointments[:future_appointments] = @logged_in_user.appointments
+                                                         .where(query,
+                                                                :confirmed,
+                                                                Time.now)
+    @appointments[:future_appointments] = @appointments[:future_appointments]
+                                          .paginate(page: params[:page],
+                                                    per_page: 2)
   end
 
   def decline_appointment

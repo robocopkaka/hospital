@@ -30,10 +30,10 @@ module AppointmentsHelper
     end
     appointments_hash[:past_appointments] = appointments_hash[:past_appointments]
                                             .paginate(page: params[:page],
-                                                      per_page: 1)
+                                                      per_page: 2)
     appointments_hash[:future_appointments] = appointments_hash[:future_appointments]
                                               .paginate(page: params[:page],
-                                                        per_page: 1)
+                                                        per_page: 2)
     appointments_hash
   end
 end
