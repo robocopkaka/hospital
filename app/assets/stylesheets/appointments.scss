@@ -130,25 +130,50 @@
     padding-bottom: px-to-rem(30px);
   }
 
-  #past-appointments {
-    background: #68D89B;
-    height: 100%;
-    padding-left: px-to-rem(80px);
-    .row {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
+  #appointments-section {
+    padding-top: px-to-rem(30px);
+    #past-appointments {
+      //background: #68D89B;
+      height: 100%;
+      padding-left: px-to-rem(80px);
+      .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+      //padding-right: px-to-rem(100px);
+      //display: flex;
     }
-    //padding-right: px-to-rem(100px);
-    //display: flex;
+    #future-appointments {
+      //display: flex;
+      .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+      #future-pagination {
+        padding-top: px-to-rem(60px);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
   }
-  #future-appointments {
-    //display: flex;
-    .row {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-    }
+  .four.wide.column {
+    padding: px-to-rem(40px);
+  }
+  .menu-header {
+    background: #FFF;
+    color: black;
+    //color: #8DFFCD;
+    //&:hover {
+    //  background: #22BA46;
+    //  color: #FFF;
+    //}
+  }
+  .site-green {
+    background: #22BA46;
+    color: #FFF;
   }
 }
 

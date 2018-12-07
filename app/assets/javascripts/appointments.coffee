@@ -16,4 +16,42 @@ $(document).on 'turbolinks:load', ->
   if doctor
     $('#appointment_specialization_id').prop 'disabled', true
     $('#appointment_appointment_date').prop 'disabled', true
+
+  # code for user appointment history
+  headers = document.getElementsByClassName("menu-header")
+  const past = $(headers[0]).hasClass("site-green")
+  const future = $(headers[1]).hasClass("site-green")
+  $(headers[0]).addClass "site-green"
+  $(headers[0]).hover (->
+    if ($(headers[0]).hasClass("site-green")) && !$(headers[1]).hasClass("site-green")
+      $(headers[0]).toggleClass "site-green"
+#      $(headers[1]).addClass("menu-header").removeClass "site-green"
+    else if ($(headers[0]).hasClass("site-green"))
+      $(headers[0]).toggleClass "site-green"
+    return
+  ), ()-> (
+    if (past)
+      $(headers[0]).toggleClass("site-green")
+    else if (future)
+      $(headers[1]).toggleClass("site-green")
+    return
+  )
+
+  $(headers[1]).hover (->
+    if ($(headers[0]).hasClass("site-green")) && !$(headers[1]).hasClass("site-green")
+      $(headers[0]).toggleClass "site-green"
+      $(headers[1]).toggleClass "site-green"
+#      $(headers[1]).addClass("menu-header").removeClass "site-green"
+    else if ($(headers[1]).hasClass("site-green"))
+      $(headers[1]).toggleClass "site-green"
+    return
+  ), ()-> (
+    if (future)
+      $(headers[1]).toggleClass("site-green")
+    else if (past)
+      $(headers[0]).toggleClass("site-green")
+    return
+  )
+  console.log(headers)
   return
+

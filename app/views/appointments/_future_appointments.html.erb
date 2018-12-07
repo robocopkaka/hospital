@@ -1,7 +1,9 @@
-<h2>Future appointments</h2>
-<div class="ui two column grid">
-  <div class="row">
+<!--<h2>Future appointments</h2>-->
+<div class="ui grid">
+  <div class="three column row">
     <%= render partial: "appointment", collection: @appointments[:future_appointments] %>
   </div>
 </div>
-<%= will_paginate @appointments[:future_appointments], renderer: WillPaginateSemanticUi::ActionView::Renderer %>
+<div id="future-pagination">
+  <%= will_paginate @appointments[:future_appointments], renderer: WillPaginateSemanticUi::ActionView::Renderer %>
+</div>

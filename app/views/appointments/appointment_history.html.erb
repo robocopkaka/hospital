@@ -1,9 +1,29 @@
 <% javascript_include_tag "pagination" %>
-<!--<div class="ui">-->
-<div class="ui grid" id="user-appointments">
-  <div class="eight wide column" id="past-appointments">
-    <%= render 'past_appointments' %></div>
-  <div class="eight wide column" id="future-appointments">
-    <%= render 'future_appointments' %></div>
+<div class="">
+  <div class="results">
+    <p>Showing 6 out of 12 results </p> <!-- Fix this later when fixing pagination.js -->
+  </div>
+  <div class="ui divider"></div>
+  <div class="ui grid" id="user-appointments">
+  <div class="four wide column">
+    <div class="ui vertical menu">
+      <a class="item menu-header site-green">
+        <h2>Past</h2>
+<!--        <p>Stuff</p>-->
+      </a>
+      <a class="item menu-header">
+        <h2>Future</h2>
+<!--        <p>Stuff</p>-->
+      </a>
+    </div>
+  </div>
+  <div class="twelve wide column">
+    <div id="appointments-section">
+<!--      <div class="" id="past-appointments">-->
+<!--        <%#= render 'past_appointments' %></div>-->
+      <div class="eight wide column" id="future-appointments">
+        <%= render 'future_appointments' %></div>
+    </div>
+  </div>
 </div>
-<!--</div>-->
+</div>

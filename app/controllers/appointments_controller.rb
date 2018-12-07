@@ -70,7 +70,7 @@ class AppointmentsController < ApplicationController
                                                               Time.now)
     @appointments[:past_appointments] = @appointments[:past_appointments]
                                         .paginate(page: params[:page],
-                                                  per_page: 2)
+                                                  per_page: 3)
     @appointments
   end
 
@@ -83,7 +83,7 @@ class AppointmentsController < ApplicationController
                                                                 Time.now)
     @appointments[:future_appointments] = @appointments[:future_appointments]
                                           .paginate(page: params[:page],
-                                                    per_page: 2)
+                                                    per_page: 6)
   end
 
   def decline_appointment
